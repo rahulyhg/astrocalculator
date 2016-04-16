@@ -6,15 +6,20 @@ using System.Diagnostics;
 namespace astrocalc.test {
     [TestClass]
     public class UnitTest1 {
+
+        double[] pune = new double[] { 73.8567, 18.5204 };
+        double[] hyderabad = new double[] { 78.4867, 17.3850 };
+        double[] chandigarh = new double[] { 76.7794, 30.7333 };
+        double[] dhakoli = new double[] { 76.8452, 30.6544 };
+
         [TestMethod]
-        public void TestMethod1() {
-            float julianDay = DateServices.JulianDay(2016, 4,16, 78.4867f, false);
-            Trace.WriteLine(julianDay);
-            double solarDeclination = DateServices.SolarDeclination(julianDay);
-            Trace.WriteLine(solarDeclination);
-            double slNoon =  (julianDay > 90 ? julianDay - 90 : 90 - julianDay)/15;
-            double sunrise = DateServices.Sunrise(solarDeclination, 17.3850, slNoon);
-            Trace.WriteLine(sunrise);
+        public void ApproximateTest() {
+
+            int julianDay = SuryKranti.JulianDayApprox(2016, 4,16, pune[0] , false);
+            Trace.WriteLine(string.Format("Julian day requested is {0}", julianDay));
+
+            decimal  declination =SuryKranti.SolarDeclinationApprox(julianDay);
+            Trace.WriteLine(string.Format("solar declination is  {0}", declination));
         }
     }
 }
