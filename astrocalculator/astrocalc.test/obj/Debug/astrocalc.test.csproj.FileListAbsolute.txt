@@ -1,0 +1,9 @@
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\obj\Debug\astrocalc.test.csprojResolveAssemblyReference.cache
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\bin\Debug\astrocalc.test.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\bin\Debug\astrocalc.test.pdb
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\bin\Debug\astrocalc.app.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\bin\Debug\astrocalc.app.pdb
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\obj\Debug\astrocalc.test.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.test\obj\Debug\astrocalc.test.pdb

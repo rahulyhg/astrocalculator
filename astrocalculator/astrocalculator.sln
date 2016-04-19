@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "astrocalc.web", "astrocalc.web\", "{E76B52A9-A05C-4C62-83BC-BFA3A1F4F9FD}"
 	ProjectSection(WebsiteProperties) = preProject

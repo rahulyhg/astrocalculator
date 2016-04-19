@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using astrocalc.app.services;
 using System.Diagnostics;
+using astrocalc.app.services.usnautical;
 
 namespace astrocalc.test {
     [TestClass]
@@ -20,6 +21,12 @@ namespace astrocalc.test {
 
             decimal  declination =SuryKranti.SolarDeclinationApprox(julianDay);
             Trace.WriteLine(string.Format("solar declination is  {0}", declination));
+        }
+        [TestMethod]
+        public void ServicesTest() {
+            DateTime dt = new DateTime(2016, 4, 7, 0,0,0);
+            Trace.WriteLine(String.Format(
+                "Local sunrise is {0}", dt.LocalSunrise(73.8567, 18.5204, 90.3)));
         }
     }
 }
