@@ -24,9 +24,14 @@ namespace astrocalc.test {
         }
         [TestMethod]
         public void ServicesTest() {
-            DateTime dt = new DateTime(2016, 4, 7, 0,0,0);
-            Trace.WriteLine(String.Format(
-                "Local sunrise is {0}", dt.LocalSunrise(73.8567, 18.5204, 90.3)));
+            //change date here
+            DateTime dt = new DateTime(2016, 5, 1, 0, 0, 0);
+            for (int i = 0; i <30; i++) {
+                Trace.WriteLine(String.Format(
+                "Local sunrise is {0}", dt.LocalSunrise(73.8567, 18.5204, 82)));
+                dt =dt.AddDays(1);
+            }
+            
         }
     }
 }
