@@ -22,8 +22,10 @@ namespace astrocalc.api.Controllers {
             var result = new SolarConfig() {
                 month = DateTime.Today.Month,
                 year = DateTime.Today.Year,
-                citychoices = _repo
-                .QueryInterface<ICity>().Index().ToList<City>()
+                city = (new Repo()).QueryInterface<ICity>().Index().OrderBy(x => x.title).FirstOrDefault(),
+                choices = new SolarConfigChoices() {
+                    city = (new Repo()).QueryInterface<ICity>().Index().OrderBy(x=>x.title).ToList<City>()
+                }
             };
             return new ObjectResult(result);
         }

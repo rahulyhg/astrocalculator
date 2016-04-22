@@ -6,9 +6,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace astrocalc.api.Models {
-    public class SolarConfig {
-        public List<City> citychoices { get; set; }
-        public string[] monthchoices
+    public class SolarConfigChoices {
+        public List<City> city { get; set; }
+        public string[] month
         {
             get
             {
@@ -17,7 +17,7 @@ namespace astrocalc.api.Models {
                };
             }
         }
-        public int[] yearchoices
+        public int[] year
         {
             get
             {
@@ -26,6 +26,9 @@ namespace astrocalc.api.Models {
                 };
             }
         }
+    }
+    public class SolarConfig {
+        public SolarConfigChoices choices { get; set; }
         public City city { get; set; }
         public int year { get; set; }
         public int month { get; set; }

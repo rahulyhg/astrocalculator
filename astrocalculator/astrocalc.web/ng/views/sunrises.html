@@ -7,7 +7,7 @@
                         <h4><span class="glyphicon glyphicon-map-marker"></span> Place</h4>
                     </label>
                     <select class="form-control" id="select" ng-model="selection.city">
-                        <option ng-repeat="c in model.citychoices" value="{{c.title}}">{{c.title}}</option>
+                        <option ng-repeat="c in model.choices.city" value="{{c.title}}">{{c.title}}</option>
                     </select>
                 </div>
 
@@ -41,7 +41,7 @@
                     <h4><span class="glyphicon glyphicon-calendar"></span> Year</h4>
                 </label>
                 <select class="form-control" id="select" ng-model="selection.year">
-                    <option ng-repeat="y in model.yearchoices" value="{{y}}">{{y}}</option>
+                    <option ng-repeat="y in model.choices.year" value="{{y}}">{{y}}</option>
                 </select>
                 <br>
             </div>
@@ -51,7 +51,7 @@
                     <h4><span class="glyphicon glyphicon-calendar"></span> Month</h4>
                 </label>
                 <select class="form-control" id="select" ng-model="selection.month">
-                    <option ng-repeat="m in model.monthchoices" value="{{m}}">{{m}}</option>
+                    <option ng-repeat="m in model.choices.month" value="{{m}}">{{m}}</option>
                 </select>
                 <br>
                 <br>
