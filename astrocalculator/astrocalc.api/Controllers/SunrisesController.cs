@@ -30,9 +30,12 @@ namespace astrocalc.api.Controllers {
             List<SolarDetail> details = new List<SolarDetail>();
             for (int i = 1; i < DateTime.DaysInMonth(config.Year, config.Month); i++) {
                 DateTime dt = new DateTime(config.Year, config.Month, i, 0, 0, 0); // this is the date to start with
-                DateTime dtSunrise= dt.LocalSunrise(config.City.Longitude, config.City.Latitude, 82.00);
+                DateTime dtSunrise= dt.LocalSunrise(config.City.Longitude, config.City.Latitude, config.SolarZenith);
                 details.Add(new SolarDetail() {
-                    Sunrise = dtSunrise
+                    Sunrise = dtSunrise,
+                    Declination = ServiceExtensions.SolarDeclination(dt.TrueSolarLongitude(config.City.Longitude)),
+                    JulianDay = dt.JulianDay(),
+                    GregorianDate = dt
                 }); 
             }
             return new ObjectResult(details);

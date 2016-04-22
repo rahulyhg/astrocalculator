@@ -11,7 +11,7 @@ namespace astrocalc.api.Models {
         public City City { get; set; }
         public int Year { get; set; }
         public int Month { get; set; }
-
+        public double SolarZenith { get; set; }
         public string[] MonthChoices
         {
             get

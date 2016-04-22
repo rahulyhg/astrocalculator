@@ -54,45 +54,42 @@ namespace astrocalc.api.services.usnautical {
         public static double CosineInv(double value) {
             return Degrees(Math.Acos(value));
         }
-        public static DateTime LocalSunrise(this DateTime dt, double longitude, double latitude, double degZenith, bool rising = true) {
-
-            //calculation for the julian day
+        public static double JulianDay(this DateTime dt) {
             double n1 = Math.Floor((double)dt.Month * 275 / 9);
             double n2 = Math.Floor((double)(dt.Month + 9) / 12);
             double n3 = 1 + (Math.Floor((dt.Year - 4 * Math.Floor((double)dt.Year / 4) + 2) / 3));
-            var jualianday= n1 - (n2 * n3) + dt.Day - 30;
-            Trace.WriteLine(String.Format(
-                "Julian Day: {0}", jualianday));
-            //the place has its longitude and thus an offset in the time then would have to be considered
-            var solarnoon = jualianday+((6 - (longitude / 15)) / 24);//jualianday - (longitude / 360);
-            Trace.WriteLine(String.Format(
-                "Solar Noon {0}", solarnoon));
-
-            //now calculating the Sun's anomaly
+            return n1 - (n2 * n3) + dt.Day - 30;
+        }
+        public static double SolarNoon(this DateTime dt, double longitude) {
+            return JulianDay(dt) + ((6 - (longitude / 15)) / 24);
+        }
+        public static double TrueSolarLongitude(this DateTime dt, double longitude) {
+            var solarnoon = SolarNoon(dt, longitude);
             var solaranolamy = (0.9856 * solarnoon) - 3.289;
-
-            //var trusolarlongitude = solaranolamy + 
-            //    (1.916 * Sine(solaranolamy)) + 
-            //    (0.020 * Sine(2 * solaranolamy)) + 
-            //    282.634;
-            var trusolarlongitude = solaranolamy +
+            return solaranolamy +
                 (1.916 * Sine(solaranolamy)) +
                 (0.020 * Sine(2 * solaranolamy)) +
-                (0.0003 * Sine(3 * solaranolamy))+ 282.634;
+                (0.0003 * Sine(3 * solaranolamy)) + 282.634;
+        }
+        public static double SolarRightAscension(double solarLongitude) {
+            var ra= TangentInv(0.91764 * Tangent(solarLongitude));
+            var Lquadrant = (Math.Floor(solarLongitude / 90)) * 90;
+            var RAquadrant = (Math.Floor(ra / 90)) * 90;
+            var ra_deg= ra + (Lquadrant - RAquadrant);
+            return ra_deg / 15;
+        }
+        public static double SolarDeclination(double solarLongitude) {
+            return SineInv(0.39782 * Sine(solarLongitude));
+        }
+        public static DateTime LocalSunrise(this DateTime dt, double longitude, double latitude, double degZenith, bool rising = true) {
 
+            var trusolarlongitude = TrueSolarLongitude(dt, longitude);
+            var solarRightAscension = SolarRightAscension(trusolarlongitude);
 
-            var solarRightAscension = TangentInv(0.91764 * Tangent(trusolarlongitude));
-            Trace.WriteLine(String.Format("Solar Right Ascension(deg) {0}", solarRightAscension));
-            //normalizing the quadrants of solar longitude and right ascension
-            var Lquadrant = (Math.Floor(trusolarlongitude / 90)) * 90;
-            var RAquadrant = (Math.Floor(solarRightAscension / 90)) * 90;
-            solarRightAscension = solarRightAscension + (Lquadrant - RAquadrant);
-            //right ascension value being converted to hours
-            solarRightAscension = solarRightAscension / 15;
-
-            var sinDec = 0.39782 * Sine(trusolarlongitude); //0.39782 = sin(23.44)
-            var cosDec = Cosine(SineInv(sinDec));
-            var dec = SineInv(sinDec);
+            var dec = SolarDeclination(trusolarlongitude);
+            var sinDec = Sine(dec); //0.39782 = sin(23.44)
+            var cosDec = Cosine(dec);
+            
             var dec_deg = Math.Floor(dec);
             var dec_mins = Math.Floor((dec - dec_deg) * 60);
             Trace.WriteLine(String.Format("Solar Declination (deg) :{0}{1} {2}'", dec_deg, (char)176 ,dec_mins));
@@ -106,7 +103,7 @@ namespace astrocalc.api.services.usnautical {
             var H = 360 - CosineInv(cosH);
             H = H / 15;
            
-            var sunrise = H + solarRightAscension - (0.06571 * solarnoon) - 6.622; ;
+            var sunrise = H + solarRightAscension - (0.06571 * SolarNoon(dt, longitude)) - 6.622; ;
             
             sunrise  = sunrise <0 ? (-1)*sunrise : sunrise;
             var mins = (sunrise - Math.Floor(sunrise))*60;
