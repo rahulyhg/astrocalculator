@@ -9,8 +9,11 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Globalization;
 using astrocalc.api.services.usnautical;
+using Microsoft.AspNet.Cors.Core;
+
 namespace astrocalc.api.Controllers {
     [Route("sunrises")]
+    [EnableCors("opentopublic")]
     public class SunrisesController : Controller {
         protected Repo _repo = new Repo();
         [Route("")]

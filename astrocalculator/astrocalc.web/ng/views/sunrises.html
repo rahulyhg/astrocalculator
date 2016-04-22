@@ -6,12 +6,8 @@
                     <label for="select" class="control-label">
                         <h4><span class="glyphicon glyphicon-map-marker"></span> Place</h4>
                     </label>
-                    <select class="form-control" id="select">
-                        <option value="Pune">Pune</option>
-                        <option value="Bangalore">Bangalore</option>
-                        <option value="Hyderabad">Hyderabad</option>
-                        <option value="Mumbai">Mumbai</option>
-                        <option value="Chandigarh">Chandigarh</option>
+                    <select class="form-control" id="select" ng-model="model.city">
+                        <option ng-repeat="c in model.citychoices" value="{{c.title}}">{{c.title}}</option>
                     </select>
                 </div>
 

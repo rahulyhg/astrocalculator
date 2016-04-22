@@ -9,19 +9,15 @@ using Microsoft.AspNet.Routing;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Runtime;
-
-namespace astrocalc.api
-{
-    public class Startup
-    {
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
-        {
+using Microsoft.AspNet.Cors;
+namespace astrocalc.api {
+    public class Startup {
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv) {
             // Setup configuration sources.
             var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json");
 
-            if (env.IsEnvironment("Development"))
-            {
+            if (env.IsEnvironment("Development")) {
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
@@ -34,20 +30,26 @@ namespace astrocalc.api
 
         // This method gets called by a runtime.
         // Use this method to add services to the container
-        public void ConfigureServices(IServiceCollection services)
-        {
+        public void ConfigureServices(IServiceCollection services) {
             // Add Application Insights data collection services to the services container.
             services.AddApplicationInsightsTelemetry(Configuration);
-
             services.AddMvc();
+            services.AddCors();
+            var policy = new Microsoft.AspNet.Cors.Core.CorsPolicy();
+
+            policy.Headers.Add("*");
+            policy.Methods.Add("*");
+            policy.Origins.Add("*");
+            policy.SupportsCredentials = true;
+
+            services.ConfigureCors(x => x.AddPolicy("opentopublic", policy));
             // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
             // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
             // services.AddWebApiConventions();
         }
 
         // Configure is called after ConfigureServices is called.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        {
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
             // Add Application Insights to the request pipeline to track HTTP request telemetry data.
             app.UseApplicationInsightsRequestTelemetry();
 
@@ -59,8 +61,11 @@ namespace astrocalc.api
 
             // Add MVC to the request pipeline.
             app.UseMvc();
+            app.UseCors("opentopublic");
             // Add the following route for porting Web API 2 controllers.
             // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
+          
+
         }
     }
 }

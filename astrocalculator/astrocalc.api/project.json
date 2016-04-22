@@ -9,7 +9,9 @@
         "Microsoft.AspNet.Server.WebListener": "1.0.0-beta5",
         "Microsoft.AspNet.StaticFiles": "1.0.0-beta5",
         "Microsoft.Framework.Configuration.Json": "1.0.0-beta5",
-        "Microsoft.Net.Http": "2.2.22"
+        "Microsoft.Net.Http": "2.2.22",
+        "Microsoft.AspNet.Cors": "1.0.0-beta5"
+
     },
 
     "commands": {
