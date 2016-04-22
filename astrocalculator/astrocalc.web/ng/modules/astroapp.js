@@ -14,4 +14,14 @@
             return ws;
         }
     })
+    .filter("angle", function () {
+        return function (value, format) {
+            if (/deg min/.test(format) ==true) {
+                //we would have to convert the value to degrees and minutes
+                var numberVal = parseFloat(value);
+                var mins = Math.floor((numberVal - Math.floor(numberVal)) * 60)
+                return Math.floor(numberVal).toString() + "\xB0" + mins.toString() + "'"
+            }
+        }
+    })
 })()

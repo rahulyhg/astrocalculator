@@ -66,44 +66,30 @@
                                 <h4>Date</h4>
                             </th>
                             <th>
+                                <h4>Julian</h4>
+                            </th>
+                            <th>
                                 <h4>Sunrise</h4>
                             </th>
                             <th>
                                 <h4>Sunset</h4>
                             </th>
                             <th>
-                                <h4>Other</h4>
-                            </th>
-                            <th>
-                                <h4>More</h4>
+                                <h4>Declination</h4>
                             </th>
                         </tr>
                     </thead>
                     <tbody class="panel-body">
-                        <tr>
-                            <td>1</td>
-                            <td>6:23 AM</td>
-                            <td>7:30 PM</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>6:01 AM</td>
-                            <td>7:09 PM</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>6:01 AM</td>
-                            <td>7:09 PM</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
+                        <tr ng-repeat="d in solardetails">
+                            <td>{{d.gregorianday|date:'dd-MMMM'}}</td>
+                            <td>{{d.julianday}}</td>
+                            <td>{{d.sunrise|date:'HH:mm'}}</td>
+                            <td>{{d.sunset|date:'HH:mm'}}</td>
+                            <td>{{d.declination|angle:'deg min'}}</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div>S
         </div>
     </div>
 </div>
