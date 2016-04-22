@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace astrocalc.api.Models {
     public class SolarConfig {
-        public List<City> CityChoices { get; set; }
-        public City City { get; set; }
-        public int Year { get; set; }
-        public int Month { get; set; }
-        public double SolarZenith { get; set; }
-        public string[] MonthChoices
+        public List<City> citychoices { get; set; }
+        public string[] monthchoices
         {
             get
             {
@@ -21,7 +17,7 @@ namespace astrocalc.api.Models {
                };
             }
         }
-        public int[] YearChoices
+        public int[] yearchoices
         {
             get
             {
@@ -30,5 +26,9 @@ namespace astrocalc.api.Models {
                 };
             }
         }
+        public City city { get; set; }
+        public int year { get; set; }
+        public int month { get; set; }
+        public double zenith { get; set; }
     }
 }

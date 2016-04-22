@@ -1,26 +1,25 @@
 ﻿namespace astrocalc.api.models {
 
     public class Locale {
-        public double[] Coordinates { get; set; }
-
-        public double Latitude
+        public double[] coordinates { get; set; }
+        public double latitude
         {
             get
             {
-                return this.Coordinates[0];
+                return this.coordinates[0];
             }
         }
-        public double Longitude
+        public double longitude
         {
             get
             {
-                return this.Coordinates[1];
+                return this.coordinates[1];
             }
         }
     }
 
     public class City:Locale {
-        public string Title { get; set; }
+        public string title { get; set; }
        
     }
 }

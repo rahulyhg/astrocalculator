@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace astrocalc.api.Models {
     public class SolarDetail {
-        public double JulianDay { get; set; }
-        public DateTime GregorianDate { get; set; }
-        public DateTime Sunrise { get; set; }
-        public DateTime Sunset { get; set; }
-        public double Declination { get; set; }
+        public double julianday { get; set; }
+        public DateTime gregorianday { get; set; }
+        public DateTime sunrise { get; set; }
+        public DateTime sunset { get; set; }
+        public double declination { get; set; }
     }
 }
 
