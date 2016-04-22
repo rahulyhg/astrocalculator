@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Globalization;
-
+using astrocalc.api.services.usnautical;
 namespace astrocalc.api.Controllers {
     [Route("sunrises")]
     public class SunrisesController : Controller {
@@ -27,21 +27,13 @@ namespace astrocalc.api.Controllers {
         [HttpPost]
         [Route("")]
         public ObjectResult SunriseForMonth([FromBody]SolarConfig config) {
-            DateTime dt = new DateTime(config.Year, config.Month, 1, 6, 17, 0);
-            SolarDetail sd = new SolarDetail() {
-                Declination = 9.5,
-                JulianDay = 117,
-                Sunrise = dt,
-                Sunset = dt.AddHours(12),
-            };
-            List<SolarDetail> details = new List<SolarDetail>() { sd};
-            for (int i = 2; i <DateTime.DaysInMonth(dt.Year, dt.Month) ; i++) {
+            List<SolarDetail> details = new List<SolarDetail>();
+            for (int i = 1; i < DateTime.DaysInMonth(config.Year, config.Month); i++) {
+                DateTime dt = new DateTime(config.Year, config.Month, i, 0, 0, 0); // this is the date to start with
+                DateTime dtSunrise= dt.LocalSunrise(config.City.Longitude, config.City.Latitude, 82.00);
                 details.Add(new SolarDetail() {
-                    Declination = sd.Declination,
-                    JulianDay = sd.JulianDay+1,
-                    Sunrise = sd.Sunrise.AddDays(1),
-                    Sunset = sd.Sunrise.AddDays(1).AddHours(12)
-                });
+                    Sunrise = dtSunrise
+                }); 
             }
             return new ObjectResult(details);
         }
