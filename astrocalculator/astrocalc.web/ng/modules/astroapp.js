@@ -3,7 +3,7 @@
         .config(["$routeProvider", function ($routeProvider) {
             $routeProvider
             .when("/", { templateUrl: "ng/views/home.html" })
-            .when("/home", { templateUrl: "ng/views/home.html" })
+            .when("/sunrises", { templateUrl: "ng/views/sunrises.html" })
             .otherwise({ redirectTo: "/" })
         }])
 })()
