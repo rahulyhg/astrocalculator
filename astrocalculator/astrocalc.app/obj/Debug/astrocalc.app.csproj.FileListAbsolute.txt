@@ -1,5 +1,10 @@
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\astrocalc.app.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\astrocalc.app.pdb
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\MongoDB.Bson.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\MongoDB.Driver.Core.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\MongoDB.Driver.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\MongoDB.Bson.xml
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\MongoDB.Driver.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\obj\Debug\astrocalc.app.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\obj\Debug\astrocalc.app.pdb
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\obj\Debug\astrocalc.app.csprojResolveAssemblyReference.cache
