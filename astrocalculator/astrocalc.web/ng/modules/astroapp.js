@@ -2,8 +2,8 @@
     var astroapp = angular.module("astroapp", ["ngRoute"])
         .config(["$routeProvider", function ($routeProvider) {
             $routeProvider
-            .when("/", { templateUrl: "ng/views/sunrises.html", controller: "ctrollerSunrises" })
-            .when("/sunrises", { templateUrl: "ng/views/sunrises.html", controller:"ctrollerSunrises" })
+            .when("/", { templateUrl: "ng/views/solarephemeris.html", controller: "ctrollerSunrises" })
+            .when("/sunrises", { templateUrl: "ng/views/solarephemeris.html", controller: "ctrollerSunrises" })
             .otherwise({ redirectTo: "/" })
         }])
     .provider("webserver", function () {
