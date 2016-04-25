@@ -1,10 +1,9 @@
-﻿using astrocalc.app.models;
+﻿using astrocalc.app.storemodels;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace astrocalc.app.repos {
-    public interface ICity : IGet<City>, IQueryable {
+    public interface ICity : IGet<City>, IQueried {
         Task<List<City>> OfState(string state);
     }
 }

@@ -2,8 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using astrocalc.app.repos;
 using System.Linq;
-using astrocalc.app.models;
 using System.Diagnostics;
+using astrocalc.app.storemodels;
 
 namespace astrocalc.test {
     [TestClass]

@@ -78,15 +78,15 @@ namespace astrocalc.app.services.usnautical {
             var ra_deg= ra + (Lquadrant - RAquadrant);
             return ra_deg / 15;
         }
-        public static double SolarDeclination(double solarLongitude) {
-            return SineInv(0.39782 * Sine(solarLongitude));
+        public static double SolarDeclination(this DateTime dt,  double longitude) {
+            return SineInv(0.39782 * Sine(TrueSolarLongitude(dt, longitude)));
         }
         public static DateTime LocalSunrise(this DateTime dt, double longitude, double latitude, double degZenith, bool rising = true) {
 
             var trusolarlongitude = TrueSolarLongitude(dt, longitude);
             var solarRightAscension = SolarRightAscension(trusolarlongitude);
 
-            var dec = SolarDeclination(trusolarlongitude);
+            var dec = dt.SolarDeclination(longitude);
             var sinDec = Sine(dec); //0.39782 = sin(23.44)
             var cosDec = Cosine(dec);
             

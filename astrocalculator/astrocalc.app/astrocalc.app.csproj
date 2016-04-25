@@ -53,14 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\City.cs" />
-    <Compile Include="Models\SolarConfig.cs" />
-    <Compile Include="Models\SolarDetail.cs" />
+    <Compile Include="Models\HttpModels.cs" />
+    <Compile Include="Models\StoreModels.cs" />
     <Compile Include="Repos\AnyRepo.cs" />
     <Compile Include="Repos\CityRepo.cs" />
     <Compile Include="Repos\ICity.cs" />
     <Compile Include="Repos\IGet.cs" />
+    <Compile Include="Repos\IMonth.cs" />
     <Compile Include="Repos\IQueryable.cs" />
+    <Compile Include="Repos\MonthRepo.cs" />
     <Compile Include="Repos\Repo.cs" />
     <Compile Include="Services\SuryaKranti.cs" />
     <None Include="SuryaKranti.cs" />

@@ -9,17 +9,18 @@ namespace astrocalc.app.repos
     public class Repo
     {
         //this would store all the registered implementations
-        protected List<IQueryable> implementations  = new List<IQueryable>();
+        protected List<IQueried> implementations  = new List<IQueried>();
 
         public Repo() {
             //registering all the implementations
-            implementations.AddRange(new List<IQueryable>() {
-                new CityRepo()
+            implementations.AddRange(new List<IQueried>() {
+                new CityRepo(),
+                new MonthRepo()
             });
         }
         public T QueryInterface<T>() {
             //we need to query the object for the implementation and then send back to the client
-            if (typeof(T).GetInterfaces().Where(x => x.Name == "IQueryable").FirstOrDefault() != null) {
+            if (typeof(T).GetInterfaces().Where(x => x.Name == "IQueried").FirstOrDefault() != null) {
                return (T)(implementations.Where(x => x.GetType().GetInterfaces().Where(i => i.Name == typeof(T).Name).Count() != 0).FirstOrDefault());
             }
             else {

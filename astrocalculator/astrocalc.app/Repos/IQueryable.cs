@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace astrocalc.app.repos
 {
-    public interface IQueryable
+    public interface IQueried
     {
     }
 }

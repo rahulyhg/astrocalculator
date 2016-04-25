@@ -1,4 +1,4 @@
-﻿using astrocalc.app.models;
+﻿using astrocalc.app.storemodels;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
@@ -29,7 +29,6 @@ namespace astrocalc.app.repos {
                 throw new ArgumentException(String.Format("Pagination params cannot be null"));
             }
         }
-
         public async Task<IEnumerable<City>> Likely(string phrase) {
             if (!string.IsNullOrEmpty(phrase)) {
                 var filter = Builders<City>.Filter.Regex(x => x.city, new BsonRegularExpression(new Regex(phrase, RegexOptions.IgnoreCase)));
@@ -48,11 +47,9 @@ namespace astrocalc.app.repos {
                 throw new ArgumentException(String.Format("phrase to search for cannot be null or empty"));
             }
         }
-
         public City OfId(int id) {
             throw new NotImplementedException();
         }
-
         public async Task<City> OfId(string id) {
             var filter = Builders<City>.Filter.Eq(x => x._id, new BsonObjectId(new ObjectId(id)));
             try {
@@ -62,8 +59,6 @@ namespace astrocalc.app.repos {
                 throw ex;
             }
         }
-      
-
         public async Task<List<City>> OfState(string state) {
             //this woudl form the approximate filter of the state
             var stateFilter = Builders<City>.Filter.Regex(x => x.state, new BsonRegularExpression(new Regex(state, RegexOptions.IgnoreCase)));
@@ -71,7 +66,6 @@ namespace astrocalc.app.repos {
             var exactResults = approxResults.Where(x => x.state.ToLower() == state.ToLower()).ToList();
             return exactResults;
         }
-
         Task<City> IGet<City>.OfId(int id) {
             throw new NotImplementedException();
         }
