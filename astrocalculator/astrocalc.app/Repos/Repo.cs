@@ -15,7 +15,8 @@ namespace astrocalc.app.repos
             //registering all the implementations
             implementations.AddRange(new List<IQueried>() {
                 new CityRepo(),
-                new MonthRepo()
+                new MonthRepo(),
+                new ZenithRepo()
             });
         }
         public T QueryInterface<T>() {

@@ -51,7 +51,7 @@ namespace astrocalc.app.repos {
             throw new NotImplementedException();
         }
         public async Task<City> OfId(string id) {
-            var filter = Builders<City>.Filter.Eq(x => x._id, new BsonObjectId(new ObjectId(id)));
+            var filter = Builders<City>.Filter.Eq(x => x.id, new BsonObjectId(new ObjectId(id)));
             try {
                 return await _cities.Find(filter).FirstOrDefaultAsync();
             }

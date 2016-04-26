@@ -1,4 +1,4 @@
-﻿<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2">
+﻿<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2" ng-controller="ctrollerEphemeris">
     <form class="form-horizontal well">
         <fieldset>
             <div class="col-md-10 col-md-offset-1">
@@ -17,46 +17,38 @@
                     </div>
                     <!-- Search suggestions.. -->
                     <!-- this is diaplayed with a z index only when the search suggestions are being entered and the the number of suggestions is not zero -->
-                    <ul class="list-group" 
-                        style="margin-top:0.5em; max-height:10em;overflow-y:auto" 
-                        ng-show="cityLike!=='' && srchSuggs.length!=0">
+                    <ul class="list-group flyout-list"
+                        ng-show="cityLike!=='' && cities.length!=0">
                         <!-- this is each of the search suggestion  -->
-                        <li class="list-group-item" ng-repeat="s in srchSuggs" ng-click="selectCity(s)">
-                            {{s.text}}
+                        <li class="list-group-item" ng-repeat="s in cities" ng-click="selectCity(s)">
+                            <h6>
+                                {{s.city}}
+                                <span class="pull-right">
+                                    {{s.state}}
+                                </span>
+                            </h6>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-10 col-md-offset-1">
                 <div class="form-group">
-                    <select class="form-control" id="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select class="form-control" id="select" ng-model="year">
+                        <option ng-repeat="y in range.years" value="y">{{y}}</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-10 col-md-offset-1">
                 <div class="form-group">
-                    <select class="form-control" id="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select class="form-control" id="select" ng-model="month">
+                        <option ng-repeat="m in months" value="m.pos">{{m.id}}</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-10 col-md-offset-1">
                 <div class="form-group">
-                    <select class="form-control" id="select">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select class="form-control" id="select" ng-model="zenith">
+                        <option ng-repeat="z in range.zeniths" value="z.value">{{z.id}}</option>
                     </select>
                 </div>
             </div>
@@ -72,8 +64,6 @@
                 <th><h4>Declination</h4></th>
             </tr>
         </thead>
-        <tbody>
-            
-        </tbody>
+        <tbody></tbody>
     </table>
 </div>

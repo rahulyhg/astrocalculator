@@ -2,13 +2,13 @@
     var astroapp = angular.module("astroapp", ["ngRoute"])
         .config(["$routeProvider", function ($routeProvider) {
             $routeProvider
-            .when("/", { templateUrl: "ng/views/solarephemeris.html", controller: "ctrollerSunrises" })
-            .when("/sunrises", { templateUrl: "ng/views/solarephemeris.html", controller: "ctrollerSunrises" })
+            .when("/", { templateUrl: "ng/views/solarephemeris.html", controller: "" })
+            .when("/sunrises", { templateUrl: "ng/views/solarephemeris.html", controller: "" })
             .otherwise({ redirectTo: "/" })
         }])
     .provider("webserver", function () {
         var ws = {
-            baseUrl:"http://localhost:1248/"
+            baseUrl:"http://localhost:8081/api/"
         }
         this.$get = function () {
             return ws;

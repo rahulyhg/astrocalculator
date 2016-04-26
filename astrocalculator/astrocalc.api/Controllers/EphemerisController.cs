@@ -11,7 +11,7 @@ using astrocalc.app.services.usnautical;
 
 namespace astrocalc.api.Controllers {
     [RoutePrefix("ephemeris")]
-    [EnableCors("*", "*", "*")]
+    [EnableCors(origins:"*", headers:"*", methods:"*")]
     public class EphemerisController : AnyController
     {
         [HttpGet]
@@ -28,6 +28,11 @@ namespace astrocalc.api.Controllers {
                 years.Add(i);
             }
             return Ok<List<int>>(years);
+        }
+        [HttpGet]
+        [Route("range/zeniths")]
+        public async Task<IHttpActionResult> RangeOfZeniths() {
+            return Ok<List<Zenith>>((await (_repo.QueryInterface<IZenith>()).Index()).ToList<Zenith>());
         }
         [HttpGet]
         [Route("locations/cities/{id}")]
