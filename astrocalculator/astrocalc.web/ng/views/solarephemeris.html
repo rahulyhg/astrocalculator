@@ -17,10 +17,10 @@
                     </div>
                     <ul class="nav nav-pills nav-stacked" ng-hide="httpBody.lat==null||httpBody.lng==null">
                         <li class="active">
-                            <a ng-click="deselectCity()">
+                            <a >
                                 <h5>
                                     {{httpBody.lat}} N, {{httpBody.lng}} E
-                                    <span class="pull-right glyphicon glyphicon-remove clickable" ></span>
+                                    <span ng-click="deselectCity()" class="pull-right glyphicon glyphicon-remove clickable" ></span>
                                 </h5>
                             </a>
                         </li>
@@ -44,8 +44,8 @@
             </div>
             <div class="col-md-10 col-md-offset-1">
                 <div class="form-group">
-                    <select class="form-control" id="select" ng-model="year">
-                        <option ng-repeat="y in range.years" value="y">{{y}}</option>
+                    <select class="form-control" id="select" ng-model="httpBody.yr">
+                        <option ng-repeat="y in years" value="{{y}}">{{y}}</option>
                     </select>
                 </div>
             </div>

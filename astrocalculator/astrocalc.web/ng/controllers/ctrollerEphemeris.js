@@ -40,5 +40,9 @@
             $scope.httpBody.lat = null;
             $scope.httpBody.lng = null;
         }
+
+        svcWebapi.yearSuggestions().then(function (data) {
+            $scope.years = data;
+        })
     })
 })();
