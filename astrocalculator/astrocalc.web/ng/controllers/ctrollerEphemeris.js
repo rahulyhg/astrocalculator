@@ -2,6 +2,9 @@
     var ctrollerEphemeris = angular.module("astroapp").controller("ctrollerEphemeris", function ($scope, svcWebapi) {
         $scope.cityLike = "";
         $scope.cities = [];
+        $scope.years = [];
+        $scope.months = [];
+        $scope.zeniths = [];
         //this is the model that is used to send to api to get the ephemeris values
         $scope.httpBody = {
             lat: null,
@@ -43,6 +46,12 @@
 
         svcWebapi.yearSuggestions().then(function (data) {
             $scope.years = data;
+        });
+        svcWebapi.monthSuggestions().then(function (data) {
+            $scope.months = data;
+        });
+        svcWebapi.zenithSuggestions().then(function (data) {
+            $scope.zeniths = data;
         })
     })
 })();

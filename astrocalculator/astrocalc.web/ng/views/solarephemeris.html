@@ -51,15 +51,15 @@
             </div>
             <div class="col-md-10 col-md-offset-1">
                 <div class="form-group">
-                    <select class="form-control" id="select" ng-model="month">
-                        <option ng-repeat="m in months" value="m.pos">{{m.id}}</option>
+                    <select class="form-control" id="select" ng-model="httpBody.mn">
+                        <option ng-repeat="m in months" value="{{m.pos}}">{{m.id}}</option>
                     </select>
                 </div>
             </div>
             <div class="col-md-10 col-md-offset-1">
                 <div class="form-group">
-                    <select class="form-control" id="select" ng-model="zenith">
-                        <option ng-repeat="z in range.zeniths" value="z.value">{{z.id}}</option>
+                    <select class="form-control" id="select" ng-model="httpBody.zen">
+                        <option ng-repeat="z in zeniths" value="{{z.value}}">{{z.id}}</option>
                     </select>
                 </div>
             </div>
