@@ -17,15 +17,15 @@
                     </div>
                     <ul class="nav nav-pills nav-stacked" ng-hide="httpBody.lat==null||httpBody.lng==null">
                         <li class="active">
-                            <a >
+                            <a>
                                 <h5>
                                     {{httpBody.lat}} N, {{httpBody.lng}} E
-                                    <span ng-click="deselectCity()" class="pull-right glyphicon glyphicon-remove clickable" ></span>
+                                    <span ng-click="deselectCity()" class="pull-right glyphicon glyphicon-remove clickable"></span>
                                 </h5>
                             </a>
                         </li>
                     </ul>
-                 
+
                     <!-- Search suggestions.. -->
                     <!-- this is diaplayed with a z index only when the search suggestions are being entered and the the number of suggestions is not zero -->
                     <ul class="list-group flyout-list"
@@ -63,18 +63,34 @@
                     </select>
                 </div>
             </div>
+            <div class="col-md-10 col-md-offset-1">
+                <button class="btn btn-block btn-primary" ng-click="getEphemeris()">
+                    <span class="glyphicon glyphicon-send"></span>
+                </button>
+            </div>
         </fieldset>
     </form>
-    <table class="table table-hover table-responsive">
-        <thead>
-            <tr>
-                <th><h4>Date</h4></th>
-                <th><h4>Julian</h4></th>
-                <th><h4>Sunrise</h4></th>
-                <th><h4>Sunset</h4></th>
-                <th><h4>Declination</h4></th>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
+    <div style="max-height:20em; overflow-y:auto">
+        <table class="table table-hover table-responsive">
+            <thead>
+                <tr>
+                    <th><h4>Date</h4></th>
+                    <th><h4>Julian</h4></th>
+                    <th><h4>Sunrise</h4></th>
+                    <th><h4>Sunset</h4></th>
+                    <th><h4>Declination</h4></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in solartimes">
+                    <td>{{d.date|date:'dd-MMMM'}}</td>
+                    <td>{{d.julian}}</td>
+                    <td>{{d.sunrise|date:'HH:mm'}}</td>
+                    <td>{{d.sunset|date:'HH:mm'}}</td>
+                    <td>{{d.declination|angle:'deg min'}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
 </div>

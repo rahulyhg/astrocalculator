@@ -1,5 +1,18 @@
 ﻿(function () {
     var svcWebApi = angular.module("astroapp").service("svcWebapi", function (webserver, $http, $q, $timeout) {
+
+        this.getSolarEphemeris = function (lat, lng, zen, yr, mn) {
+            var url = webserver.baseUrl + "ephemeris/solar/"+lat +"/"+ lng+"/"+zen+"/"+yr+"/"+mn;
+            var deferred = $q.defer();
+            $http.get(url).then(function (response) {
+                deferred.resolve(response.data);
+            }, function (response) {
+                console.error("failed to get the likely zenith choices from the server");
+                console.error(response.status);
+                deferred.reject(response.status);
+            });
+            return deferred.promise;
+        }
         this.zenithSuggestions = function () {
             var url = webserver.baseUrl + "ephemeris/range/zeniths";
             var deferred = $q.defer();

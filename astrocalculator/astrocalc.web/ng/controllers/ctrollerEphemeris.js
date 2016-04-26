@@ -5,6 +5,7 @@
         $scope.years = [];
         $scope.months = [];
         $scope.zeniths = [];
+        $scope.solartimes = [];
         //this is the model that is used to send to api to get the ephemeris values
         $scope.httpBody = {
             lat: null,
@@ -52,6 +53,12 @@
         });
         svcWebapi.zenithSuggestions().then(function (data) {
             $scope.zeniths = data;
-        })
+        });
+        $scope.getEphemeris = function () {
+            svcWebapi.getSolarEphemeris($scope.httpBody.lat, $scope.httpBody.lng, $scope.httpBody.zen, $scope.httpBody.yr, $scope.httpBody.mn).then(function (data) {
+                $scope.solartimes = data;
+                console.debug($scope.solartimes);
+            });
+        }
     })
 })();
