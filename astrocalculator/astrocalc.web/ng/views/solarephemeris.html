@@ -3,7 +3,7 @@
         <fieldset>
             <div class="col-md-10 col-md-offset-1">
                 <div class="form-group">
-                    <div class="input-group">
+                    <div class="input-group" ng-show="httpBody.lat==null||httpBody.lng==null">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-search"></span>
                         </span>
@@ -15,12 +15,23 @@
                             </button>
                         </span>
                     </div>
+                    <ul class="nav nav-pills nav-stacked" ng-hide="httpBody.lat==null||httpBody.lng==null">
+                        <li class="active">
+                            <a ng-click="deselectCity()">
+                                <h5>
+                                    {{httpBody.lat}} N, {{httpBody.lng}} E
+                                    <span class="pull-right glyphicon glyphicon-remove clickable" ></span>
+                                </h5>
+                            </a>
+                        </li>
+                    </ul>
+                 
                     <!-- Search suggestions.. -->
                     <!-- this is diaplayed with a z index only when the search suggestions are being entered and the the number of suggestions is not zero -->
                     <ul class="list-group flyout-list"
                         ng-show="cityLike!=='' && cities.length!=0">
                         <!-- this is each of the search suggestion  -->
-                        <li class="list-group-item" ng-repeat="s in cities" ng-click="selectCity(s)">
+                        <li class="list-group-item clickable" ng-repeat="s in cities" ng-click="selectCity(s)">
                             <h6>
                                 {{s.city}}
                                 <span class="pull-right">
