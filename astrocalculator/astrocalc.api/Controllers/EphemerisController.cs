@@ -49,7 +49,8 @@ namespace astrocalc.api.Controllers {
                         date = dt,
                         julian = dt.JulianDay(),
                         sunrise = dt.LocalSunrise(lng, lat, zen),
-                        declination = dt.SolarDeclination(lng)
+                        sunset = dt.LocalSunset(lng, lat, zen),
+                        declination = ServiceExtensions.SolarDeclination(ServiceExtensions.TrueSolarLongitude(ServiceExtensions.SolarNoon_Rise(dt.JulianDay(), lng), lng))
                     });
                     dt =dt.AddDays(1);
                 }

@@ -60,12 +60,20 @@ namespace astrocalc.app.services.usnautical {
             double n3 = 1 + (Math.Floor((dt.Year - 4 * Math.Floor((double)dt.Year / 4) + 2) / 3));
             return n1 - (n2 * n3) + dt.Day - 30;
         }
-        public static double SolarNoon(this DateTime dt, double longitude) {
-            return JulianDay(dt) + ((6 - (longitude / 15)) / 24);
+        /// <summary>
+        /// this gets the solar noon
+        /// </summary>
+        /// <param name="jd">julian day</param>
+        /// <param name="longitude">longitude of the location</param>
+        /// <returns></returns>
+        public static double SolarNoon_Rise(double jd,  double longitude) {
+            return jd + ((6 - (longitude / 15)) / 24);
         }
-        public static double TrueSolarLongitude(this DateTime dt, double longitude) {
-            var solarnoon = SolarNoon(dt, longitude);
-            var solaranolamy = (0.9856 * solarnoon) - 3.289;
+        public static double SolarNoon_Set(double jd, double longitude) {
+            return jd + ((18 - (longitude / 15)) / 24);
+        }
+        public static double TrueSolarLongitude(double slnoon, double longitude) {
+            var solaranolamy = (0.9856 * slnoon) - 3.289;
             return solaranolamy +
                 (1.916 * Sine(solaranolamy)) +
                 (0.020 * Sine(2 * solaranolamy)) +
@@ -78,21 +86,53 @@ namespace astrocalc.app.services.usnautical {
             var ra_deg= ra + (Lquadrant - RAquadrant);
             return ra_deg / 15;
         }
-        public static double SolarDeclination(this DateTime dt,  double longitude) {
-            return SineInv(0.39782 * Sine(TrueSolarLongitude(dt, longitude)));
+        public static double SolarDeclination(double trusllongitude) {
+            return SineInv(0.39782 * Sine(trusllongitude));
         }
-        public static DateTime LocalSunrise(this DateTime dt, double longitude, double latitude, double degZenith, bool rising = true) {
 
-            var trusolarlongitude = TrueSolarLongitude(dt, longitude);
+
+        public static DateTime LocalSunset(this DateTime dt, double longitude, double latitude, double degZenith, bool rising = true) {
+            var jd = dt.JulianDay(); //this would get the julian day
+            var solarnoon = SolarNoon_Set(jd, longitude);
+
+            var trusolarlongitude = TrueSolarLongitude(solarnoon, longitude);
             var solarRightAscension = SolarRightAscension(trusolarlongitude);
 
-            var dec = dt.SolarDeclination(longitude);
+            var dec = SolarDeclination(trusolarlongitude);
+            var sinDec = Sine(dec); //0.39782 = sin(23.44)
+            var cosDec = Cosine(dec);
+
+            var dec_deg = Math.Floor(dec);
+            var dec_mins = Math.Floor((dec - dec_deg) * 60);
+            //then we calculate the sun's local hour angle
+
+            var cosH = (Cosine(degZenith)) -
+                (sinDec * Sine(latitude)) / (cosDec * Cosine(latitude));
+
+            //local rising time
+            var H =  CosineInv(cosH);
+            H = H / 15;
+
+            var sunrise = H + solarRightAscension - (0.06571 * SolarNoon_Set(jd, longitude)) - 6.622; ;
+
+            sunrise = sunrise < 0 ? (-1) * sunrise : sunrise;
+            var mins = (sunrise - Math.Floor(sunrise)) * 60;
+            return new DateTime(dt.Year, dt.Month, dt.Day, dt.AddHours(Math.Floor(sunrise)).Hour, dt.AddMinutes(mins).Minute, 0);
+        }
+
+        public static DateTime LocalSunrise(this DateTime dt, double longitude, double latitude, double degZenith, bool rising = true) {
+            var jd = dt.JulianDay(); //this would get the julian day
+            var solarnoon = SolarNoon_Rise(jd, longitude);
+
+            var trusolarlongitude = TrueSolarLongitude(solarnoon, longitude);
+            var solarRightAscension = SolarRightAscension(trusolarlongitude);
+
+            var dec = SolarDeclination(trusolarlongitude);
             var sinDec = Sine(dec); //0.39782 = sin(23.44)
             var cosDec = Cosine(dec);
             
             var dec_deg = Math.Floor(dec);
             var dec_mins = Math.Floor((dec - dec_deg) * 60);
-
             //then we calculate the sun's local hour angle
             
             var cosH = (Cosine(degZenith)) - 
@@ -102,7 +142,7 @@ namespace astrocalc.app.services.usnautical {
             var H = 360 - CosineInv(cosH);
             H = H / 15;
            
-            var sunrise = H + solarRightAscension - (0.06571 * SolarNoon(dt, longitude)) - 6.622; ;
+            var sunrise = H + solarRightAscension - (0.06571 * SolarNoon_Rise(jd, longitude)) - 6.622; ;
             
             sunrise  = sunrise <0 ? (-1)*sunrise : sunrise;
             var mins = (sunrise - Math.Floor(sunrise))*60;

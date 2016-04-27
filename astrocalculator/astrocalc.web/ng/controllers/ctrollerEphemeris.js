@@ -1,5 +1,5 @@
 ﻿(function () {
-    var ctrollerEphemeris = angular.module("astroapp").controller("ctrollerEphemeris", function ($scope, svcWebapi) {
+    var ctrollerEphemeris = angular.module("astroapp").controller("ctrollerEphemeris", function ($scope, svcWebapi, $location) {
         $scope.cityLike = "";
         $scope.cities = [];
         $scope.years = [];
@@ -59,6 +59,9 @@
                 $scope.solartimes = data;
                 console.debug($scope.solartimes);
             });
+        }
+        $scope.createLocation = function () {
+            $location.url("/newlocation");
         }
     })
 })();

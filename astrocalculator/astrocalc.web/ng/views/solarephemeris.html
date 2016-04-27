@@ -10,7 +10,7 @@
                         <!-- this is only for the user to enter the likely search phrase and when this changes we would get the suggestions out -->
                         <input ng-model="cityLike" type="text" class="form-control" placeholder="Search for location">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="button">
+                            <button class="btn btn-primary" type="button" ng-click="createLocation()">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </button>
                         </span>
@@ -89,7 +89,6 @@
                     <td>{{d.sunset|date:'HH:mm'}}</td>
                     <td>{{d.declination|angle:'deg min'}}</td>
                 </tr>
-
             </tbody>
         </table>
     </div>
