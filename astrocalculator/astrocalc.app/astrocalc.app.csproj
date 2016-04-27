@@ -60,6 +60,7 @@
     <Compile Include="Repos\ICity.cs" />
     <Compile Include="Repos\IGet.cs" />
     <Compile Include="Repos\IMonth.cs" />
+    <Compile Include="Repos\IPost.cs" />
     <Compile Include="Repos\IQueryable.cs" />
     <Compile Include="Repos\IZenith.cs" />
     <Compile Include="Repos\MonthRepo.cs" />

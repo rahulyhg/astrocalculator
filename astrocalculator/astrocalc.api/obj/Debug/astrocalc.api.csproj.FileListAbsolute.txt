@@ -96,7 +96,7 @@ D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.Web.Http.Owin
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\MongoDB.Driver.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\MongoDB.Bson.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.csprojResolveAssemblyReference.cache
-D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.dll
-D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.pdb
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.Properties.Resources.resources
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.csproj.GenerateResource.Cache
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.pdb

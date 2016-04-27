@@ -7,4 +7,3 @@ D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\MongoDB.Bson.x
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\bin\Debug\MongoDB.Driver.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\obj\Debug\astrocalc.app.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\obj\Debug\astrocalc.app.pdb
-D:\GitHub\astrocalculator\astrocalculator\astrocalc.app\obj\Debug\astrocalc.app.csprojResolveAssemblyReference.cache

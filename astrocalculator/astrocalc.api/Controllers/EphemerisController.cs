@@ -34,18 +34,7 @@ namespace astrocalc.api.Controllers {
         public async Task<IHttpActionResult> RangeOfZeniths() {
             return Ok<List<Zenith>>((await (_repo.QueryInterface<IZenith>()).Index()).ToList<Zenith>());
         }
-        [HttpGet]
-        [Route("locations/cities/{id}")]
-        public async Task<IHttpActionResult> Cities(string id) {
-            ICity qi = _repo.QueryInterface<ICity>();
-            return Ok<City>(await qi.OfId(id));
-        }
-        [HttpGet]
-        [Route("locations/likely/{phrase}")]
-        public async Task<IHttpActionResult> LocationsLike(string phrase) {
-            ICity qi = _repo.QueryInterface<ICity>();
-            return Ok<List<City>>((await qi.Likely(phrase)).ToList<City>());
-        }
+       
         [HttpGet]
         [Route("solar/{lat}/{lng}/{zen}/{yr:int}/{mn:int}")]
         public async Task<IHttpActionResult> SolarEphemeris(double lat, double lng, double zen, int yr, int mn) {
