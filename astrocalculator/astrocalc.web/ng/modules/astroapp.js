@@ -4,6 +4,7 @@
             $routeProvider
             .when("/", { templateUrl: "ng/views/solarephemeris.html", controller: "" })
             .when("/sunrises", { templateUrl: "ng/views/solarephemeris.html", controller: "" })
+            .when("/newlocation", { templateUrl: "ng/views/newlocation.html", controller: "locationController" })
             .otherwise({ redirectTo: "/" })
         }])
     .provider("webserver", function () {

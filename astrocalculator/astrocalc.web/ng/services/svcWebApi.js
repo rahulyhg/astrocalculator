@@ -1,6 +1,29 @@
 ﻿(function () {
     var svcWebApi = angular.module("astroapp").service("svcWebapi", function (webserver, $http, $q, $timeout) {
-
+        this.postLocation = function (location) {
+            var url = webserver.baseUrl + "locations/cities";
+            var deferred = $q.defer();
+            $http.post(url, location).then(function (response) {
+                deferred.resolve(response.data);
+            }, function (response) {
+                console.error("failed to get the likely zenith choices from the server");
+                console.error(response.status);
+                deferred.reject(response.status);
+            });
+            return deferred.promise;
+        }
+        this.getStates = function () {
+            var url = webserver.baseUrl + "locations/states";
+            var deferred = $q.defer();
+            $http.get(url).then(function (response) {
+                deferred.resolve(response.data);
+            }, function (response) {
+                console.error("failed to get the likely zenith choices from the server");
+                console.error(response.status);
+                deferred.reject(response.status);
+            });
+            return deferred.promise;
+        }
         this.getSolarEphemeris = function (lat, lng, zen, yr, mn) {
             var url = webserver.baseUrl + "ephemeris/solar/"+lat +"/"+ lng+"/"+zen+"/"+yr+"/"+mn;
             var deferred = $q.defer();
@@ -50,7 +73,7 @@
             return deferred.promise;
         }
         this.citySuggestions = function (phrase) {
-            var url = webserver.baseUrl + "ephemeris/locations/likely/{p}".replace(/{p}/, phrase);
+            var url = webserver.baseUrl + "locations/cities/likely/{p}".replace(/{p}/, phrase);
             var deferred = $q.defer();
             $http.get(url).then(function (response) {
                 deferred.resolve(response.data);

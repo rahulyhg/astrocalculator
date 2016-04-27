@@ -4,7 +4,7 @@
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\GitHub\\astrocalculator\\astrocalculator\\astrocalc\.api\\obj\\Release\\Package\\PackageTmp$" />
     <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\GitHub\\astrocalculator\\astrocalculator\\astrocalc\.api\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-astrocalc.api-20160424112241.mdf;Initial Catalog=aspnet-astrocalc.api-20160424112241;Integrated Security=True" tags="SqlConnectionString">
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-astrocalc.api-20160424112241.mdf;Initial Catalog=aspnet-astrocalc.api-20160424112241;Integrated Security=True" tags="">
     <parameterEntry kind="XmlFile" scope="D:\\GitHub\\astrocalculator\\astrocalculator\\astrocalc\.api\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
   </parameter>
 </parameters>

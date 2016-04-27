@@ -1,0 +1,40 @@
+﻿<div class="col-lg-8 col-md-8 col-lg-offset-2 col-md-offset-2" >
+    <div class="well">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="httpmodel.city">
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="httpmodel.longitude">
+                <span class="input-group-btn">
+                    <button ng-click="httpmodel.longitude = httpmodel.longitude>0? httpmodel.longitude:httpmodel.longitude*(-1)" 
+                            ng-class="{true:'btn btn-primary', false:'btn btn-default'}[httpmodel.longitude>=0]" 
+                            type="button">E</button>
+                </span>
+                <span class="input-group-btn">
+                    <button ng-click="httpmodel.longitude = httpmodel.longitude>0? (-1)* httpmodel.longitude:httpmodel.longitude"
+                            ng-class="{true:'btn btn-primary', false:'btn btn-default'}[httpmodel.longitude<0]" type="button">W</button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="httpmodel.latitude">
+                <span class="input-group-btn">
+                    <button ng-click="httpmodel.latitude = httpmodel.latitude>0? httpmodel.latitude:httpmodel.latitude*(-1)"
+                            ng-class="{true:'btn btn-primary', false:'btn btn-default'}[httpmodel.latitude>=0]" type="button">N</button>
+                </span>
+                <span class="input-group-btn">
+                    <button ng-click="httpmodel.latitude = httpmodel.latitude>0? (-1)* httpmodel.latitude:httpmodel.latitude"
+                            ng-class="{true:'btn btn-primary', false:'btn btn-default'}[httpmodel.latitude<0]" type="button">S</button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-control" id="select" ng-model="httpmodel.state">
+                <option ng-repeat="s in states" value="{{s}}">{{s}}</option>
+            </select>
+        </div>
+        <button class="btn btn-block btn-primary" ng-click="createLocation()">Create</button>
+    </div>
+</div>

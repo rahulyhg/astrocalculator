@@ -98,9 +98,9 @@ namespace astrocalc.app.repos {
         public async Task<List<string>> States() {
             //this is when we are getting the states all unique grouped
             var states= await _cities.Aggregate()
-                .Group(Builders<City>.Projection.Include(x => x.state))
+                .Group(new BsonDocument { new BsonElement("_id", "$state")})
                 .ToListAsync<BsonDocument>();
-           return states.Select(x => x.Elements.First().ToString()).ToList<string>();
+           return states.Select(x => x.Elements.First().Value.ToString()).OrderBy(x=>x).ToList<string>();
         }
 
         Task<City> IGet<City>.OfId(int id) {
