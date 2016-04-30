@@ -85,8 +85,8 @@
                 <tr ng-repeat="d in solartimes">
                     <td>{{d.date|date:'dd-MMMM'}}</td>
                     <td>{{d.julian}}</td>
-                    <td>{{d.sunrise|date:'HH:mm'}}</td>
-                    <td>{{d.sunset|date:'HH:mm'}}</td>
+                    <td>{{d.sunrise|date:'HH:mm:ss'}}</td>
+                    <td>{{d.sunset|date:'HH:mm:ss'}}</td>
                     <td>{{d.declination|angle:'deg min'}}</td>
                 </tr>
             </tbody>

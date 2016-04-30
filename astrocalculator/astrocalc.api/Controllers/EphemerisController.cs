@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using astrocalc.app.services.usnautical;
+using astrocalc.app.services.solar;
 
 namespace astrocalc.api.Controllers {
     [RoutePrefix("ephemeris")]
@@ -48,8 +49,8 @@ namespace astrocalc.api.Controllers {
                     solartimes.Add(new SolarTime() {
                         date = dt,
                         julian = dt.JulianDay(),
-                        sunrise = dt.LocalSunrise(lng, lat, zen),
-                        sunset = dt.LocalSunset(lng, lat, zen),
+                        sunrise = Solar.Rise(lat, lng,dt,zen, 5.26),
+                        sunset = Solar.Set(lat, lng, dt, zen, 5.26),
                         declination = ServiceExtensions.SolarDeclination(ServiceExtensions.TrueSolarLongitude(ServiceExtensions.SolarNoon_Rise(dt.JulianDay(), lng), lng))
                     });
                     dt =dt.AddDays(1);

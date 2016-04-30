@@ -31,11 +31,9 @@ namespace astrocalc.app.services.usnautical {
         public static double Radians(double angle) {
             return (Math.PI / 180) * angle;
         }
-
         public static double Degrees(double angle) {
             return angle * 180 / Math.PI;
         }
-
         public static double Cosine(double angle_deg) {
             return Math.Cos(Radians(angle_deg));
         }
@@ -145,7 +143,7 @@ namespace astrocalc.app.services.usnautical {
 
             sunrise = sunrise < 0 ? (-1) * sunrise : sunrise;
             var mins = (sunrise - Math.Floor(sunrise)) * 60;
-            return new DateTime(dt.Year, dt.Month, dt.Day, dt.AddHours(Math.Floor(sunrise)).Hour, dt.AddMinutes(mins).Minute, 0);
+            return new DateTime(dt.Year, dt.Month, dt.Day, dt.AddHours(Math.Floor(sunrise+12)).Hour, dt.AddMinutes(mins).Minute, 0);
         }
 
         public static DateTime LocalSunrise(this DateTime dt, double longitude, double latitude, double degZenith, bool rising = true) {
