@@ -1,0 +1,28 @@
+﻿<div >
+    <div class="input-group input-group-sm" ng-show="location.lat==null||location.lng==null">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-map-marker"></span>
+        </span>
+        <input ng-model="location.phrase" type="text" class="form-control" placeholder="Search for location">
+    </div>
+    <ul class="nav nav-pills nav-stacked" ng-hide="location.lat==null||location.lng==null">
+        <li class="active">
+            <a>
+                <h4>{{location.title}}</h4>  {{location.lat}} N &nbsp; {{location.lng}} E
+                <span ng-click="clearLocation()" class="pull-right glyphicon glyphicon-remove clickable"></span>
+            </a>
+        </li>
+    </ul>
+    <ul class="list-group flyout-list"
+        ng-show="location.phrase!=='' && location.suggestions.length!=0">
+        <!-- this is each of the search suggestion  -->
+        <li class="list-group-item clickable" ng-repeat="s in location.suggestions" ng-click="selectCity(s)">
+            <h6>
+                {{s.city}}
+                <span class="pull-right">
+                    {{s.state}}
+                </span>
+            </h6>
+        </li>
+    </ul>
+</div>

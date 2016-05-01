@@ -1,0 +1,41 @@
+﻿<div class="picker">
+    <div class="input-group input-group-sm picker-input">
+        <input type="text" class="form-control" value="{{dt.year}}, {{dt.monthValue()}}" disabled>
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="dropMenu = !dropMenu">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </button>
+        </span>
+    </div>
+    <div class="panel panel-default picker-menu" ng-hide="dropMenu==false">
+        <div class="panel-body">
+            <div class="picker-menu-header row text-center" >
+                <span>
+                    <span class="glyphicon glyphicon-menu-left" ng-click="moveYear(-10)"></span>
+                    <span class="glyphicon glyphicon-chevron-left" ng-click="moveYear(-5)"></span>
+                    <span class="glyphicon glyphicon-triangle-left" ng-click="moveYear(-1)"></span>
+                </span> &nbsp;
+                {{dt.year}} &nbsp;
+                <span>
+                    <span class="glyphicon glyphicon-triangle-right" ng-click="moveYear(1)"></span>
+                    <span class="glyphicon glyphicon-chevron-right" ng-click="moveYear(5)"></span>
+                    <span class="glyphicon glyphicon-menu-right" ng-click="moveYear(10)"></span>
+                </span>
+            </div>
+            <div class="picker-menu-body">
+                <table class="table table-condensed date-picker">
+                    <tbody>
+                        <tr ng-repeat="qtr in monthsLayout" >
+                            <td  
+								ng-repeat="m in qtr" 
+								ng-click="moveMonth(m.pos)"
+								ng-class="{true:'active', false:''}[m.pos == dt.month]" >
+                               {{m.value}}
+							</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -6,3 +6,7 @@
 .clickable {
     cursor:pointer;
 }
+.date-picker td {
+    cursor:pointer;
+    text-align:center;
+}
