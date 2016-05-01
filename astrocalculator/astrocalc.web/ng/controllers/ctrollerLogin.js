@@ -13,21 +13,22 @@
         }
         $scope.login = function () {
             if ($scope.validate() == true) {
-                svcWebapi.userLogin().then(function (data) {
+                svcWebapi.userLogin($scope.m.username.value, $scope.m.pin.value).then(function (data) {
                     console.info("User has logged in successfully");
                     $scope.warning.show = false;
                     $scope.warning.message = "";
+                    $location.url("/sunrises");
                     svcCache.storeUser(data).then(function (d) {
-                        $location.url("/sunrises");
+                       
                     });
                 }, function (response) {
                     //this is when the user is not authorized 
                     switch (response.status) {
                         case 400:
-                            $scope.warning.message = "Username is invalid , please try again";
+                            $scope.warning.message = "Username and password combination is incorrect, please try again";
                             break;
                         case 404:
-                            $scope.warning.message = "Username and password combination is incorrect, please try again";
+                            $scope.warning.message = "Username is invalid , please try again";
                             break;
                         case 500:
                             $scope.warning.message = "Something went wrong on the server, please contact admin";

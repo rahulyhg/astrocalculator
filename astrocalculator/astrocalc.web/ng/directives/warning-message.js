@@ -7,7 +7,7 @@
                 display: "=",
                 message:"="
             },
-            templateUrl: "/ng/templates/warning-message.html",
+            templateUrl: "ng/templates/warning-message.html",
         }
     })
 })();

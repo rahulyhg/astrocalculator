@@ -3,7 +3,7 @@
         return {
             restrict: "EA",
             transclude: true,
-            templateUrl: "/ng/templates/busy-animation.html",
+            templateUrl: "ng/templates/busy-animation.html",
             scope: {
                 showContent:"@"
             },
