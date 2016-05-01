@@ -1,0 +1,18 @@
+﻿<div class="option-picker" >
+    <div class="form-group" >
+        <div class="input-group input-group-sm">
+            <input type="text" class="form-control" disabled value="{{option.id}}"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="dropMenu=!dropMenu">
+                    <span class="glyphicon glyphicon-triangle-bottom"></span>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="list-group menu" ng-show="dropMenu==true">
+        <a ng-repeat="o in options" ng-class="{false:'list-group-item', true:'list-group-item active'}[o.sel==true]" 
+           ng-click="selectOption(o)">{{o.id}}
+            <span class="pull-right">{{o.value}}</span>
+        </a>
+    </div>
+</div>

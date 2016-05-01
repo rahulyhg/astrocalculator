@@ -4,21 +4,14 @@
         <!-- this is where the input fields would be placed -->
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-               <location-picker location="location"></location-picker>
-            </div>
-        </div>
-        <div class="row">
-            <!-- this is where we would have the date and time selections -->
-            <div class="col-md-10 col-md-offset-1">
+                <location-picker location="location"></location-picker>
                 <month-picker dt="dt"></month-picker>
-                <select class="form-control " id="select" ng-model="httpBody.zen">
-                    <option ng-repeat="z in zeniths" value="{{z.value}}">{{z.id}}</option>
-                </select>
+                <option-picker option="meridian" srv="svcWebapi.zenithSuggestions"></option-picker>
             </div>
         </div>
     </div>
     <div class="col-md-7">
-        <div style="max-height:20em; overflow-y:auto">
+        <div style="max-height:30em; overflow-y:auto">
             <table class="table table-hover table-responsive table-condensed">
                 <thead>
                     <tr class="active">
@@ -30,8 +23,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="d in solartimes">
-                        <td>{{d.date|date:'dd-MMMM'}}</td>
+                    <tr ng-repeat="d in ephemeris">
+                        <td>{{d.date|date:'dd/MM'}}</td>
                         <td>{{d.julian}}</td>
                         <td>{{d.sunrise|date:'HH:mm:ss'}}</td>
                         <td>{{d.sunset|date:'HH:mm:ss'}}</td>

@@ -1,0 +1,21 @@
+﻿body {
+}
+
+.option-picker {
+    margin-top: 0.5em;
+}
+
+    .option-picker .input-group {
+        z-index: 0;
+    }
+
+    .option-picker .menu {
+        margin-top: -0.8em;
+        position:absolute;
+        z-index:1;
+        width:90%;
+    }
+
+        .option-picker .menu a {
+            cursor: pointer;
+        }
