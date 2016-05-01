@@ -2,6 +2,13 @@
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace astrocalc.app.storemodels {
+
+    public class UserAccount {
+        [BsonId]
+        public BsonObjectId id { get; set; }
+        public string username { get; set; }
+        public string pin { get; set; }
+    }
     public class City {
         [BsonId]
         public BsonObjectId id { get; set; }

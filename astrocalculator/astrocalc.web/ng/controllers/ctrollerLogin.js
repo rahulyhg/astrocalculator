@@ -4,7 +4,7 @@
             username: {ok: true, value:""},
             pin: {ok: true, value:""}
         }
-        $scope.warning = { show: false, msg: "" };
+        $scope.warning = { show: false, message: "" };
         svcCache.flushUser();
         $scope.validate = function () {
             $scope.m.username.ok = $scope.m.username.value != "" && /@/.test($scope.m.username.value) == false ? true : false;
@@ -16,7 +16,7 @@
                 svcWebapi.userLogin().then(function (data) {
                     console.info("User has logged in successfully");
                     $scope.warning.show = false;
-                    $scope.warning.msg = "";
+                    $scope.warning.message = "";
                     svcCache.storeUser(data).then(function (d) {
                         $location.url("/sunrises");
                     });
@@ -26,7 +26,7 @@
                         case 400:
                             $scope.warning.message = "Username is invalid , please try again";
                             break;
-                        case 401:
+                        case 404:
                             $scope.warning.message = "Username and password combination is incorrect, please try again";
                             break;
                         case 500:

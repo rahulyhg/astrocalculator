@@ -26,9 +26,6 @@
             </div>
         </fieldset>
     </form>
-    <div class="alert alert-dismissible alert-warning" ng-show="warning.show==true">
-       
-        <h4>Ooops!</h4>
-        <p>{{warning.message}}</p>
-    </div>
+    <warning-message display="warning.show" message="warning.message"></warning-message>
+    
 </div>

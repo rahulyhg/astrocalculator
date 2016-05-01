@@ -62,9 +62,11 @@
     <Compile Include="Repos\IMonth.cs" />
     <Compile Include="Repos\IPost.cs" />
     <Compile Include="Repos\IQueryable.cs" />
+    <Compile Include="Repos\IUserAccount.cs" />
     <Compile Include="Repos\IZenith.cs" />
     <Compile Include="Repos\MonthRepo.cs" />
     <Compile Include="Repos\Repo.cs" />
+    <Compile Include="Repos\UserAccountRepo.cs" />
     <Compile Include="Repos\ZenithRepo.cs" />
     <Compile Include="Services\Algebric.cs" />
     <Compile Include="Services\Solar.cs" />

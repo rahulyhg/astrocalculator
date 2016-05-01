@@ -4,17 +4,17 @@
             var url = webserver.baseUrl + "useraccounts/{u}/{p}".replace(/{u}/, username).replace(/{p}/, pin);
             var deferred = $q.defer();
             $rootScope.$broadcast("busy", { message: "Just a moment.." });
-            $timeout(function () {
-                deferred.reject({username:"niranjanawati", location:"chandigarh", status:400});
-                $rootScope.$broadcast("standby", { message: "" });
-            }, 3000)
-            //$http.get(url).then(function (response) {
-            //    deferred.resolve(response.data);
+            //$timeout(function () {
+            //    deferred.reject({username:"niranjanawati", location:"chandigarh", status:400});
             //    $rootScope.$broadcast("standby", { message: "" });
-            //}, function (response) {
-            //    deferred.reject(response);
-            //    $rootScope.$broadcast("standby", { message: "" })
-            //});
+            //}, 3000)
+            $http.get(url).then(function (response) {
+                deferred.resolve(response.data);
+                $rootScope.$broadcast("standby", { message: "" });
+            }, function (response) {
+                deferred.reject(response);
+                $rootScope.$broadcast("standby", { message: "" })
+            });
             return deferred.promise;
         }
         this.postLocation = function (location) {
