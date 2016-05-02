@@ -3,6 +3,9 @@
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-map-marker"></span>
         </span>
+        <span class="input-group-addon">
+            <span class="clickable glyphicon glyphicon-plus-sign" ng-click="create()"></span>
+        </span>
         <input ng-model="location.phrase" type="text" class="form-control" placeholder="Search for location">
     </div>
     <ul class="nav nav-pills nav-stacked" ng-hide="location.lat==null||location.lng==null">

@@ -4,6 +4,7 @@
         $scope.location = null;
         $scope.meridian = null;
         $scope.ephemeris = [];
+        $scope.locationCreating = false; //this just denotes if the location is being created or no
         var checkIfOkForDownload = function () {
             return $scope.dt !== null &&
                 $scope.location.lat !== null &&
@@ -43,5 +44,6 @@
                 $scope.ephemeris = [];
             }
         });
+        
     })
 })();

@@ -1,0 +1,57 @@
+﻿<form class="form-horizontal">
+    <fieldset>
+        <div class="form-group">
+            <div class="">
+                <input ng-model="location.title" 
+                       type="text" 
+                       class="form-control input-sm" 
+                       id="inputEmail" 
+                       placeholder="New location">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-sm ">
+                <input type="text" class="form-control" placeholder="Longitude" ng-model="location.lng">
+                <span class="input-group-btn">
+                    <button ng-class="{false:'btn btn-default', true:'btn btn-primary'}[location.lng>0]" 
+                            ng-click="location.lng = location.lng>0?location.lng:(-1)*location.lng"
+                            type="button">E</button>
+                </span>
+                <span class="input-group-btn">
+                    <button ng-class="{false:'btn btn-default', true:'btn btn-primary'}[location.lng<0]" 
+                            ng-click="location.lng = location.lng>0?(-1)*location.lng:location.lng"
+                            type="button">W</button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group input-group-sm ">
+                <input type="text" class="form-control" placeholder="Latitude" ng-model="location.lat">
+                <span class="input-group-btn">
+                    <button ng-class="{false:'btn btn-default', true:'btn btn-primary'}[location.lat>0]" 
+                            ng-click="location.lat = location.lat>0?location.lat:(-1)*location.lat"
+                            class="btn btn-default" type="button">N</button>
+                </span>
+                <span class="input-group-btn">
+                    <button ng-class="{false:'btn btn-default', true:'btn btn-primary'}[location.lat<0]" 
+                            ng-click="location.lat = location.lat>0?(-1)*location.lat:location.lat"
+                            class="btn btn-default" type="button">S</button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="">
+                <select class="form-control input-sm" id="select" ng-model="location.state">
+                    <option ng-repeat="s in states" value="{{s}}">{{s}}</option>
+                </select>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <div class="">
+                <button type="reset" class="btn btn-default btn-sm" ng-click="created()">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-sm" ng-click="onCreate()">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

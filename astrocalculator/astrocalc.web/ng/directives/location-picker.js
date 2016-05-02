@@ -3,7 +3,8 @@
         return {
             restrict: "EA",
             scope: {
-                location:"="
+                location: "=",
+                create:"&"
             },
             templateUrl: "ng/templates/location-picker.html",
             controller: function ($scope) {

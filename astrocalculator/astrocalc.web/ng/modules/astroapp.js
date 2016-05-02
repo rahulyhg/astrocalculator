@@ -5,7 +5,6 @@
             .when("/", { templateUrl: "ng/views/login.html", controller: "ctrollerLogin" })
             .when("/login", { templateUrl: "ng/views/login.html", controller: "ctrollerLogin" })
             .when("/sunrises", { templateUrl: "ng/views/solarephemeris.html", controller: "" })
-            .when("/newlocation", { templateUrl: "ng/views/newlocation.html", controller: "" })
             .otherwise({ redirectTo: "/" })
         }])
     .provider("webserver", function () {
