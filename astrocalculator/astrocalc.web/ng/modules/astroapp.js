@@ -9,7 +9,7 @@
         }])
     .provider("webserver", function () {
         var ws = {
-            baseUrl:"http://localhost:8081/api/"
+            baseUrl: "http://localhost:8081/api/"/*"http://astrocalcapi.azurewebsites.net/"*/
         }
         this.$get = function () {
             return ws;

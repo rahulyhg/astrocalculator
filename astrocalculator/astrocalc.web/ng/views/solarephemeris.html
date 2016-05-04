@@ -26,16 +26,20 @@
                             <th>Date</th>
                             <th>Julian</th>
                             <th>Sunrise</th>
+                            <th>Noon</th>
                             <th>Sunset</th>
+                            <th>Daylength</th>
                             <th>Declination</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="d in ephemeris">
-                            <td>{{d.date|date:'dd/MM'}}</td>
+                            <td>{{d.gregoriandate|date:'dd/MM'}}</td>
                             <td>{{d.julian}}</td>
                             <td>{{d.sunrise|date:'HH:mm:ss'}}</td>
+                            <td>{{d.noon|date:'HH:mm:ss'}}</td>
                             <td>{{d.sunset|date:'HH:mm:ss'}}</td>
+                            <td>{{d.daylength|date:'HH:mm:ss'}}</td>
                             <td>{{d.declination|angle:'deg min'}}</td>
                         </tr>
                     </tbody>

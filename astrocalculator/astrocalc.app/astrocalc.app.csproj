@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migration\PortableStore.cs" />
     <Compile Include="Models\HttpModels.cs" />
     <Compile Include="Models\StoreModels.cs" />
     <Compile Include="Repos\AnyRepo.cs" />

@@ -4,8 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using astrocalc.app.services.algebric;
+using astrocalc.app.services;
+using astrocalc.app.httpmodels;
+
 namespace astrocalc.app.services.solar {
     public static class Solar {
+        public static SolarClock VedicShuddhi(SolarClock sc) {
+            double solarArcTan = 0.53; //this is the diameter of the sun as see from the earth in degrees
+            double earthAngVelo = 0.25; //degrees per minute, this is the angular velocity of of the earth 
+            double vedic_shudhi = (solarArcTan / 2) * earthAngVelo; //this is the correction when doin vedic calculations
+            sc.sunrise = sc.sunrise.AddMinutes(vedic_shudhi);
+            sc.sunset = sc.sunset.AddMinutes(-1 * vedic_shudhi);
+            return sc;
+        }
+        public static SolarClock SolarClock(this DateTime dt, double latitude, double longitude, double gmtoffset) {
+            SolarClock sc = new SolarClock();
+            sc.gregoriandate = dt;
+            //this is where we calcuclated the julian day, day index of the year
+            double n1 = Math.Floor((double)dt.Month * 275 / 9);
+            double n2 = Math.Floor((double)(dt.Month + 9) / 12);
+            double n3 = 1 + (Math.Floor((dt.Year - 4 * Math.Floor((double)dt.Year / 4) + 2) / 3));
+            sc.julian = (int)(n1 - (n2 * n3) + dt.Day - 30);
+            double B = ((double)(sc.julian - 81) * 360 / 365);
+
+            sc.declination = Algebric.SineInv(Algebric.Sine(23.45) * Algebric.Sine(B));
+
+            var lstm = 15 * gmtoffset; //local standard time meridian
+            var eot = 9.87 * (Algebric.Sine(2 * B)) - 7.53 * Algebric.Cosine(B) - 1.5 * Algebric.Sine(B);//equation of time
+
+            var tc = (4 * (longitude - lstm)) + eot; //total time correction in minutes
+   
+            sc.noon = dt.AddHours(12-(tc / 60));
+            var noonHourAngle = (tc / 60) * 15; //this is the time corection in degrees
+
+            var refrac = Algebric.Sine(-0.83); //this is the correction for the atmospheric refraction index
+            var lngdecleffect = (refrac - (Algebric.Sine(sc.declination) * Algebric.Sine(latitude))) /
+                (Algebric.Cosine(sc.declination) * Algebric.Cosine(latitude));
+            var sunrise = 12 - (Algebric.CosineInv(lngdecleffect) / 15) - (tc / 60);
+
+            sc.sunrise = dt.AddHours(sunrise);
+            TimeSpan halfday = sc.noon.Subtract(sc.sunrise);
+            sc.sunset = sc.noon.AddHours(halfday.Hours).AddMinutes(halfday.Minutes).AddSeconds(halfday.Seconds);
+            sc.daylength = sc.sunset.Subtract(sc.sunrise);
+            return sc;
+        }
+       
+        //these are deprecated methods since the formula is foudn to be not correct
         public static DateTime Rise(double latitude, double longitude, DateTime dt, double zenith, double localOffset) {
             //this would get the julian day for us
             double n1 = Math.Floor((double)dt.Month * 275 / 9);
@@ -38,7 +82,6 @@ namespace astrocalc.app.services.solar {
             return new DateTime(dt.Year, dt.Month, dt.Day, 
                 dt.AddHours(localT).Hour, dt.AddHours(localT).Minute, dt.AddHours(localT).Second);
         }
-
         public static DateTime Set(double latitude, double longitude, DateTime dt, double zenith, double localOffset) {
             //this would get the julian day for us
             double n1 = Math.Floor((double)dt.Month * 275 / 9);

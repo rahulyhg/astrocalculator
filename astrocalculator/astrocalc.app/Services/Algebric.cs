@@ -30,5 +30,7 @@ namespace astrocalc.app.services.algebric {
         public static double CosineInv(double value) {
             return Degrees(Math.Acos(value));
         }
+
+        
     }
 }

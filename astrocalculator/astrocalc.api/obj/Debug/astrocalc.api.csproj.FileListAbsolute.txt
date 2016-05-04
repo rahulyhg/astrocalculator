@@ -1,3 +1,6 @@
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.csprojResolveAssemblyReference.cache
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.Properties.Resources.resources
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.csproj.GenerateResource.Cache
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\ApplicationInsights.config
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\roslyn\csc.exe
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -28,6 +31,7 @@ D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.Applicatio
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.AspNet.Identity.Core.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.Azure.AppService.ApiApps.Service.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.Owin.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.Owin.Host.SystemWeb.dll
@@ -41,6 +45,7 @@ D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.Owin.Secur
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.Web.Infrastructure.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Newtonsoft.Json.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Owin.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.IdentityModel.Tokens.Jwt.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.Net.Http.Formatting.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.Web.Cors.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.Web.Helpers.dll
@@ -65,6 +70,7 @@ D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.AI.Web.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.AI.WindowsServer.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.ApplicationInsights.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.IdentityModel.Tokens.Jwt.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.Web.Http.Cors.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Newtonsoft.Json.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.Net.Http.Formatting.xml
@@ -95,8 +101,5 @@ D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.Owin.Secur
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.Web.Http.Owin.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\MongoDB.Driver.xml
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\MongoDB.Bson.xml
-D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.csprojResolveAssemblyReference.cache
-D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.Properties.Resources.resources
-D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.csproj.GenerateResource.Cache
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Debug\astrocalc.api.pdb

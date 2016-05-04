@@ -100,3 +100,6 @@ D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Release\astrocalc.ap
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Release\astrocalc.api.csproj.GenerateResource.Cache
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Release\astrocalc.api.dll
 D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\obj\Release\astrocalc.api.pdb
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\Microsoft.Azure.AppService.ApiApps.Service.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\GitHub\astrocalculator\astrocalculator\astrocalc.api\bin\System.IdentityModel.Tokens.Jwt.xml

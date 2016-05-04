@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using astrocalc.app.services.usnautical;
 using astrocalc.app.services.solar;
+using astrocalc.app.services;
 
 namespace astrocalc.api.Controllers {
     [RoutePrefix("ephemeris")]
@@ -37,25 +38,16 @@ namespace astrocalc.api.Controllers {
         }
        
         [HttpGet]
-        [Route("solar/{lat}/{lng}/{zen}/{yr:int}/{mn:int}")]
-        public async Task<IHttpActionResult> SolarEphemeris(double lat, double lng, double zen, int yr, int mn) {
+        [Route("solar/{lat}/{lng}/{gmtoffset}/{yr:int}/{mn:int}")]
+        public async Task<IHttpActionResult> SolarEphemeris(double lat, double lng, double gmtoffset, int yr, int mn) {
             if (yr > 0 && mn <= 12 && mn > 0) {
-                DateTime startdt = new DateTime(yr, mn, 1);
-                DateTime enddt = new DateTime(yr, mn, DateTime.DaysInMonth(yr, mn));
-                //it is between these dates that the solar times would have to be calualted 
-                DateTime dt = startdt;
-                List<SolarTime> solartimes = new List<SolarTime>();
-                for (int i = startdt.Day; i <= enddt.Day; i++) {
-                    solartimes.Add(new SolarTime() {
-                        date = dt,
-                        julian = dt.JulianDay(),
-                        sunrise = Solar.Rise(lat, lng,dt,zen, 5.26),
-                        sunset = Solar.Set(lat, lng, dt, zen, 5.26),
-                        declination = ServiceExtensions.SolarDeclination(ServiceExtensions.TrueSolarLongitude(ServiceExtensions.SolarNoon_Rise(dt.JulianDay(), lng), lng))
-                    });
-                    dt =dt.AddDays(1);
+                List<SolarClock> clocks = new List<SolarClock>(); //this is the output result 
+                DateTime startdt = new DateTime(yr, mn, 1, 0, 0, 0); //we start from the first day  in the month requested
+                for (int i = 0; i < DateTime.DaysInMonth(yr, mn); i++) {
+                    DateTime currDate = startdt.AddDays(i);
+                    clocks.Add(currDate.AstroSolarClock(lat, lng,gmtoffset));
                 }
-                return Ok<List<SolarTime>>(solartimes);
+                return Ok<List<SolarClock>>(clocks);
             }
             else {
                 throw new ArgumentException(String.Format("The requested ephemeris is not in the correct time format"));

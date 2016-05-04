@@ -42,7 +42,7 @@
             return deferred.promise;
         }
         this.getSolarEphemeris = function (lat, lng, zen, yr, mn) {
-            var url = webserver.baseUrl + "ephemeris/solar/"+lat +"/"+ lng+"/"+zen+"/"+yr+"/"+mn;
+            var url = webserver.baseUrl + "ephemeris/solar/"+lat +"/"+ lng+"/"+5.5+"/"+yr+"/"+mn;
             var deferred = $q.defer();
             $http.get(url).then(function (response) {
                 deferred.resolve(response.data);
