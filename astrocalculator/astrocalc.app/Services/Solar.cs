@@ -9,15 +9,18 @@ using astrocalc.app.httpmodels;
 
 namespace astrocalc.app.services.solar {
     public static class Solar {
+       
         public static SolarClock VedicShuddhi(SolarClock sc) {
             double solarArcTan = 0.53; //this is the diameter of the sun as see from the earth in degrees
             double earthAngVelo = 0.25; //degrees per minute, this is the angular velocity of of the earth 
-            double vedic_shudhi = (solarArcTan / 2) * earthAngVelo; //this is the correction when doin vedic calculations
+            double vedic_shudhi = (solarArcTan /2) * earthAngVelo; //this is the correction when doin vedic calculations
             sc.sunrise = sc.sunrise.AddMinutes(vedic_shudhi);
             sc.sunset = sc.sunset.AddMinutes(-1 * vedic_shudhi);
             return sc;
         }
-        public static SolarClock SolarClock(this DateTime dt, double latitude, double longitude, double gmtoffset) {
+        public static SolarClock SolarClock(this DateTime dt, double latitude, double longitude, 
+            double gmtoffset, bool atmRefrac) {
+
             SolarClock sc = new SolarClock();
             sc.gregoriandate = dt;
             //this is where we calcuclated the julian day, day index of the year
@@ -37,7 +40,9 @@ namespace astrocalc.app.services.solar {
             sc.noon = dt.AddHours(12-(tc / 60));
             var noonHourAngle = (tc / 60) * 15; //this is the time corection in degrees
 
-            var refrac = Algebric.Sine(-0.83); //this is the correction for the atmospheric refraction index
+            //this is to consider the atmospheric refraction , but not all methods would consider atm refraction 
+            //so this param is kept as conditional one
+            var refrac = atmRefrac==true? Algebric.Sine(-0.83): 0;
             var lngdecleffect = (refrac - (Algebric.Sine(sc.declination) * Algebric.Sine(latitude))) /
                 (Algebric.Cosine(sc.declination) * Algebric.Cosine(latitude));
             var sunrise = 12 - (Algebric.CosineInv(lngdecleffect) / 15) - (tc / 60);
