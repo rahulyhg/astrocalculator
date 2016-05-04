@@ -1,5 +1,13 @@
 ﻿(function () {
     var svcWebApi = angular.module("astroapp").service("svcWebapi", function (webserver, $http, $q, $timeout, $rootScope) {
+       
+        this.calcMethods = function () {
+            var deferred = $q.defer();
+            $timeout(function () {
+                deferred.resolve([{ id: "Vedic", value: "Vedic" }, { id: "Astronomical", value: "Astronomical" }]);
+            }, 300)
+            return deferred.promise;
+        }
         this.userLogin = function (username, pin) {
             var url = webserver.baseUrl + "useraccounts/{u}/{p}".replace(/{u}/, username).replace(/{p}/, pin);
             var deferred = $q.defer();
@@ -41,7 +49,19 @@
             });
             return deferred.promise;
         }
-        this.getSolarEphemeris = function (lat, lng, zen, yr, mn) {
+        this.getVedicSolarEphemeris = function (lat, lng, yr, mn) {
+            var url = webserver.baseUrl + "ephemeris/solar/vedic/" + lat + "/" + lng + "/" + 5.5 + "/" + yr + "/" + mn;
+            var deferred = $q.defer();
+            $http.get(url).then(function (response) {
+                deferred.resolve(response.data);
+            }, function (response) {
+                console.error("failed to get the likely zenith choices from the server");
+                console.error(response.status);
+                deferred.reject(response.status);
+            });
+            return deferred.promise;
+        }
+        this.getSolarEphemeris = function (lat, lng, yr, mn) {
             var url = webserver.baseUrl + "ephemeris/solar/"+lat +"/"+ lng+"/"+5.5+"/"+yr+"/"+mn;
             var deferred = $q.defer();
             $http.get(url).then(function (response) {

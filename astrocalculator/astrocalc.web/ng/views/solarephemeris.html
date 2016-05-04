@@ -1,5 +1,5 @@
 ﻿
-<div class="row" ng-controller="ctrollerEphemeris">
+<div class="row" >
     <section id="user-input">
         <!-- this section is where all the user inputs are stored away -->
         <div class="col-md-4 col-md-offset-1 col-sm-12 col-xs-12">
@@ -8,7 +8,7 @@
                     <section id="location-select" ng-hide="locationCreating==true">
                         <location-picker location="location" create="locationCreating=true;"></location-picker>
                         <month-picker dt="dt"></month-picker>
-                        <option-picker option="meridian" srv="svcWebapi.zenithSuggestions"></option-picker>
+                        <option-picker option="calcmethod" srv="svcWebapi.calcMethods"></option-picker>
                     </section>
                     <section id="create-location" ng-show="locationCreating==true">
                         <location-append location="location" created="locationCreating=false;"></location-append>

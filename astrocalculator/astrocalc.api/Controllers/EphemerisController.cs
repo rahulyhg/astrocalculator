@@ -36,7 +36,23 @@ namespace astrocalc.api.Controllers {
         public async Task<IHttpActionResult> RangeOfZeniths() {
             return Ok<List<Zenith>>((await (_repo.QueryInterface<IZenith>()).Index()).ToList<Zenith>());
         }
-       
+
+        [HttpGet]
+        [Route("solar/vedic/{lat}/{lng}/{gmtoffset}/{yr:int}/{mn:int}")]
+        public async Task<IHttpActionResult> VedicSolarEphemeris(double lat, double lng, double gmtoffset, int yr, int mn) {
+            if (yr > 0 && mn <= 12 && mn > 0) {
+                List<SolarClock> clocks = new List<SolarClock>(); //this is the output result 
+                DateTime startdt = new DateTime(yr, mn, 1, 0, 0, 0); //we start from the first day  in the month requested
+                for (int i = 0; i < DateTime.DaysInMonth(yr, mn); i++) {
+                    DateTime currDate = startdt.AddDays(i);
+                    clocks.Add(Solar.VedicShuddhi(currDate.SolarClock(lat, lng, gmtoffset, false)));
+                }
+                return Ok<List<SolarClock>>(clocks);
+            }
+            else {
+                throw new ArgumentException(String.Format("The requested ephemeris is not in the correct time format"));
+            }
+        }
         [HttpGet]
         [Route("solar/{lat}/{lng}/{gmtoffset}/{yr:int}/{mn:int}")]
         public async Task<IHttpActionResult> SolarEphemeris(double lat, double lng, double gmtoffset, int yr, int mn) {
@@ -45,7 +61,7 @@ namespace astrocalc.api.Controllers {
                 DateTime startdt = new DateTime(yr, mn, 1, 0, 0, 0); //we start from the first day  in the month requested
                 for (int i = 0; i < DateTime.DaysInMonth(yr, mn); i++) {
                     DateTime currDate = startdt.AddDays(i);
-                    clocks.Add(currDate.AstroSolarClock(lat, lng,gmtoffset));
+                    clocks.Add(currDate.SolarClock(lat, lng,gmtoffset, true));
                 }
                 return Ok<List<SolarClock>>(clocks);
             }
